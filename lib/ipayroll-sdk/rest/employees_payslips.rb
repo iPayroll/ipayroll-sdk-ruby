@@ -1,11 +1,11 @@
 module IpayrollSdk
   module Rest
-    class EmployeesLeaveRequests
+    class EmployeesPayslips
       include IpayrollSdk::Rest::Requester::ListRequester
       include IpayrollSdk::Rest::Requester::LinkRequester
 
       def initialize(rest_client, employee_id)
-        @requester = restClient.requester
+        @requester = rest_client.requester
         @resource_clazz = IpayrollSdk::Models::LeaveRequest
         @resource_uri = "/api/v1/payslips/employees/#{employee_id}"
       end

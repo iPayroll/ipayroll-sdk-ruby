@@ -6,8 +6,8 @@ module IpayrollSdk
       include IpayrollSdk::Rest::Requester::CreateRequester
       include IpayrollSdk::Rest::Requester::LinkRequester
 
-      def initialize(restClient)
-        @requester = restClient.requester
+      def initialize(rest_client)
+        @requester = rest_client.requester
         @resource_clazz = IpayrollSdk::Models::Employee
         @resource_uri = '/api/v1/employees'
       end

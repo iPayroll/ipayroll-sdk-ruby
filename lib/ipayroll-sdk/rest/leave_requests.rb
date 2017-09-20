@@ -6,7 +6,7 @@ module IpayrollSdk
       include IpayrollSdk::Rest::Requester::LinkRequester
 
       def initialize(rest_client)
-        @requester = restClient.requester
+        @requester = rest_client.requester
         @resource_clazz = IpayrollSdk::Models::PayRate
         @resource_uri = "/api/v1/leaves/requests"
       end

@@ -3,7 +3,7 @@ module IpayrollSdk
 
     class PayslipTransaction < IpayrollSdk::Base::Resource
 
-      attr_reader :amount, :quantity, :charity, :description, :notes
+      attr_reader :amount, :quantity, :description, :notes, :displayQuantity
 
     end
   end

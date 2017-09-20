@@ -10,8 +10,8 @@ module IpayrollSdk
       include IpayrollSdk::Rest::Requester::CreateRequester
       include IpayrollSdk::Rest::Requester::UpdateRequester
 
-      def initialize(restClient)
-        @requester = restClient.requester
+      def initialize(rest_client)
+        @requester = rest_client.requester
         @resource_clazz = IpayrollSdk::Models::TimecardEntry
         @resource_uri = '/api/v1/timecard/entry'
       end
