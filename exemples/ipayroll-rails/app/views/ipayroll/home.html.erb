@@ -1,0 +1,7 @@
+<h1>Ipayroll#home</h1>
+<% if !@is_connected %>
+    <%= link_to 'Connect to iPayroll', controller: 'ipayroll', action: 'connect'  %>
+<% else %>
+    <%= link_to 'All costcenters', controller: 'ipayroll', action: 'costcentres'  %>
+    <%= link_to 'All employees', controller: 'ipayroll', action: 'employees'  %>
+<% end %>

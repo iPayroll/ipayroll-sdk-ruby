@@ -1,0 +1,16 @@
+<h1>Cost Centers</h1>
+<%= link_to 'All costcenters2', controller: 'ipayroll', action: 'costcentres2'  %>
+<p><%= @cost_centers_collection.links %></p>
+<p><%= @cost_centers_collection.content %></p>
+<p><%= @cost_centers_collection.page %></p>
+
+
+<p>first_page: <%= @cost_centers_collection.first_page.href %></p>
+<p>last_page: <%= @cost_centers_collection.last_page.href %></p>
+<p>next_page: <%= @cost_centers_collection.next_page.href %></p>
+
+
+<p>Code centre: <%= @cost_center.cost_centre_id %>,
+  <%= @cost_center.code %>,
+  <%= @cost_center.description %>,
+  <%= @cost_center.display_value %></p>

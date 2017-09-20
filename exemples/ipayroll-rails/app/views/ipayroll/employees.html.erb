@@ -1,0 +1,18 @@
+<h1>Employees</h1>
+<p><%= @employees_collection.links %></p>
+<p><%= @employees_collection.content %></p>
+<p><%= @employees_collection.page %></p>
+
+
+<p>first_page: <%= @employees_collection.first_page.href %></p>
+<p>last_page: <%= @employees_collection.last_page.href %></p>
+<p>next_page: <%= @employees_collection.next_page.href %></p>
+
+
+<p>Employee: <%= @employee.employee_id %>,
+  <%= @employee.payment_method %>,
+  <%= @employee.first_names %>,
+  <%= @employee.surname %></p>
+
+
+<p>Payrates: <%= @payrates.content %></p>
