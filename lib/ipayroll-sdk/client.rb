@@ -58,10 +58,6 @@ module IpayrollSdk
       IpayrollSdk::Rest::Payslips.new(@restClient)
     end
 
-    def timecard_entries
-      IpayrollSdk::Rest::TimecardEntries.new(@restClient)
-    end
-
     private
 
     def init_signet_client(options)
