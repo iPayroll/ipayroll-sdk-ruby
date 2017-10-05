@@ -10,8 +10,8 @@ module IpayrollSdk
         @resource_uri = "/api/v1/employees/#{employee_id}/leaves/requests"
       end
 
-      def get_outstanding
-        perform_get_request_for_resource("#{@resource_uri}/current", @resource_clazz)
+      def list_outstanding
+        perform_get_request_for_resources("#{@resource_uri}/current", @resource_clazz)
       end
 
     end

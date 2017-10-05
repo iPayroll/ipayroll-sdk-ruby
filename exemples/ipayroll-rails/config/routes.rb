@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'ipayroll/costcentres'
   get 'ipayroll/costcentres2'
   get 'ipayroll/createcostcentres'
+  get 'ipayroll/leaverequests'
 
   get 'ipayroll/employees'
 

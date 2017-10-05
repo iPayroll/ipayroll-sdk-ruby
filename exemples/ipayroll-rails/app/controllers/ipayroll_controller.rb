@@ -43,6 +43,11 @@ class IpayrollController < ApplicationController
     @employee
   end
 
+  def leaverequests
+    @leave_requests_collection = @@client.leave_requests.list
+    @leave_requests_outstanding_collection = @@client.leave_requests.list_outstanding
+  end
+
   def createcostcentres
     ccs = [{
                :code => "code12",
