@@ -8,9 +8,6 @@ module IpayrollSdk
   module Models
     class Payslip < IpayrollSdk::Base::Resource
 
-      # private Map<String, BigDecimal> yearToDateTotals;
-
-
       attr_reader :total_payments, :overpayment, :tax_credit, :year_to_date_totals, :nett_pay, :abn, :payslip_message
 
       object_attr_reader :deductions, IpayrollSdk::Models::PayslipPayrollEmployeeTransaction

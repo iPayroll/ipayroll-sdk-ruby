@@ -4,7 +4,7 @@ module IpayrollSdk
   module Models
     class Employee < IpayrollSdk::Base::Resource
 
-      attr_reader :employee_id, :surname, :first_names, :start_date, :birth_date, :paid_to_date, :default_cost_centre,
+      attr_reader :surname, :first_names, :start_date, :birth_date, :paid_to_date, :default_cost_centre,
                   :email, :phone, :title, :work_state, :gender, :pay_frequency, :full_time_hours_week, :organisation,
                   :payment_method, :bankAccountNumber, :taxNumber, :finishDate, :terminationReason, :taxCode, :taxScale,
                   :kiwiSaverRate, :employerSubsidy, :kiwiSaverOptOutDate, :existingKiwiSaverMember,
