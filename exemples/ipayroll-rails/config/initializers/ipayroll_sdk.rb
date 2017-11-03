@@ -5,5 +5,5 @@ IpayrollSdk.configure do |config|
   config.client_secret = 'GwUmPqD8s7mGj4d'
   config.scope = 'leavebalances payelements payrates leaverequests employees costcentres payslips timesheets'
   config.redirect_uri = 'http://localhost:3000/ipayroll/redirect'
-  config.token_updater = TokenUpdater.new
+  config.access_token_updater = TokenUpdater.new()
 end

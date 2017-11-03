@@ -3,9 +3,11 @@ module IpayrollSdk
   module Http
     class Requester
 
-      def initialize(restClient, base_url)
+      def initialize(restClient, base_url, auto_refresh, auto_refresh_count)
         @restClient = restClient
         @base_url = base_url
+        @auto_refresh = auto_refresh
+        @auto_refresh_count = auto_refresh_count
       end
 
       def perform_get_request_for_resources(path, klass, parameters = {})
@@ -48,7 +50,7 @@ module IpayrollSdk
         options[:headers] = {'Content-Type' => 'application/json'}
       end
 
-      def perform_request(request_method, path, parameters, options = {})
+      def perform_request(request_method, path, parameters, options = {}, count = 0)
         begin
           response = @restClient.fetch_protected_resource(
               :uri => buildUri(path, parameters),
@@ -58,9 +60,7 @@ module IpayrollSdk
           )
           Response.new(response)
         rescue Signet::AuthorizationError => e
-          raise ::IpayrollSdk::Errors::AuthorizationError.new(
-              e.message, :request => e.request, :response => e.response
-          )
+          handleAuthorizationError(request_method, path, parameters, options, count, e)
         rescue ArgumentError => e
           raise ::IpayrollSdk::Errors::AuthorizationError.new(
               e.message
@@ -68,9 +68,20 @@ module IpayrollSdk
         end
       end
 
+      def handleAuthorizationError(request_method, path, parameters, options, count, e)
+        if (@auto_refresh && count < @auto_refresh_count)
+          @restClient.fetch_access_token!
+          count += 1
+          return perform_request(request_method, path, parameters, options, count);
+        end
+        raise ::IpayrollSdk::Errors::AuthorizationError.new(
+            e.message, :request => e.request, :response => e.response
+        )
+      end
+
       def buildUri(path, parameters = {})
         uri = path
-        unless uri.is_a?URI
+        unless uri.is_a? URI
           uri = URI.parse(@base_url + path)
         end
         uri.query = [uri.query, parameters.to_query].compact.join('&').to_s

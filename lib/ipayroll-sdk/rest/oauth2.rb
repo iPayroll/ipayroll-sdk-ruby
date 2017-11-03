@@ -32,7 +32,6 @@ module IpayrollSdk
 
       def connect_with_access_token(access_token)
         @rest_client.update_token!(access_token.attrs)
-        # @rest_client.refresh_token = access_token.refresh_token;
         refresh_access_token
       end
 

@@ -6,9 +6,9 @@ module IpayrollSdk
 
       def initialize(options={})
         super(options)
-        @token_updater = options[:token_updater]
+        @access_token_updater = options[:access_token_updater]
         @base_url = options[:base_url]
-        @requester = Requester.new(self, @base_url)
+        @requester = Requester.new(self, @base_url, options[:auto_refresh], options[:auto_refresh_count])
       end
 
       def authorization_uri(options={})
@@ -59,8 +59,8 @@ module IpayrollSdk
 
       def fetch_access_token!(options={})
         token = super(options)
-        if(!@token_updater.nil?)
-          @token_updater.update(token)
+        if(!@access_token_updater.nil?)
+          @access_token_updater.update(token)
         end
         token
       end

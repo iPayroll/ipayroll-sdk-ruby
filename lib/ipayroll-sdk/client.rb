@@ -71,7 +71,9 @@ module IpayrollSdk
               :client_secret => options[:client_secret],
               :scope => options[:scope],
               :redirect_uri => options[:redirect_uri],
-              :token_updater => options[:token_updater]
+              :access_token_updater => options[:access_token_updater],
+              :auto_refresh => options[:auto_refresh],
+              :auto_refresh_count => options[:auto_refresh_count]
           }
       )
     end
