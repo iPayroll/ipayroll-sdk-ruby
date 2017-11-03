@@ -13,6 +13,7 @@ require 'ipayroll-sdk/http/requester'
 require 'ipayroll-sdk/http/response'
 require 'ipayroll-sdk/http/signet_http'
 
+require 'ipayroll-sdk/models/access_token'
 require 'ipayroll-sdk/models/address'
 require 'ipayroll-sdk/models/cost_centre'
 require 'ipayroll-sdk/models/employee'

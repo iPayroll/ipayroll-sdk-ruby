@@ -6,6 +6,7 @@ module IpayrollSdk
 
       def initialize(options={})
         super(options)
+        @token_updater = options[:token_updater]
         @base_url = options[:base_url]
         @requester = Requester.new(self, @base_url)
       end
@@ -54,6 +55,14 @@ module IpayrollSdk
         #         'Authorization endpoint must be protected by TLS.'
         # end
         return uri
+      end
+
+      def fetch_access_token!(options={})
+        token = super(options)
+        if(!@token_updater.nil?)
+          @token_updater.update(token)
+        end
+        token
       end
 
       def requester

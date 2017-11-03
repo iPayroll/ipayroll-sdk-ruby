@@ -61,6 +61,7 @@ module IpayrollSdk
     private
 
     def init_signet_client(options)
+
       IpayrollSdk::Http::SignetHttp.new(
           {
               :base_url => options[:base_url],
@@ -69,7 +70,8 @@ module IpayrollSdk
               :client_id => options[:client_id],
               :client_secret => options[:client_secret],
               :scope => options[:scope],
-              :redirect_uri => options[:redirect_uri]
+              :redirect_uri => options[:redirect_uri],
+              :token_updater => options[:token_updater]
           }
       )
     end

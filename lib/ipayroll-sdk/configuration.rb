@@ -12,7 +12,8 @@ module IpayrollSdk
   class Configuration
     include IpayrollSdk::Utils::Hashable
 
-    attr_accessor :base_url, :authorization_uri, :token_credential_uri, :client_id, :client_secret, :scope, :redirect_uri
+    attr_accessor :base_url, :authorization_uri, :token_credential_uri, :client_id, :client_secret, :scope,
+                  :redirect_uri, :token_updater
 
     def initialize
       @base_url = 'http://secure2.ipayroll.co.nz/'

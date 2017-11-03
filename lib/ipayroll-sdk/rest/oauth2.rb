@@ -16,11 +16,24 @@ module IpayrollSdk
 
       def exchange_authorization_code_for_access_token(code)
         @rest_client.code = code;
-        @rest_client.fetch_access_token!
+        token = @rest_client.fetch_access_token!
+        at = IpayrollSdk::Models::AccessToken.new(token);
       end
 
       def refresh_access_token
-        @rest_client.refresh!
+        token = @rest_client.refresh!
+        at = IpayrollSdk::Models::AccessToken.new(token);
+      end
+
+      def connect_with_refresh_token(refresh_token)
+        @rest_client.refresh_token = refresh_token;
+        refresh_access_token
+      end
+
+      def connect_with_access_token(access_token)
+        @rest_client.update_token!(access_token.attrs)
+        # @rest_client.refresh_token = access_token.refresh_token;
+        refresh_access_token
       end
 
     end

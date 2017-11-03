@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get 'ipayroll/connect'
   get 'ipayroll/redirect'
 
+  get 'ipayroll/withrefreshtoken'
+  get 'ipayroll/withaccesstoken'
+
   get 'ipayroll/costcentres'
   get 'ipayroll/costcentres2'
   get 'ipayroll/createcostcentres'

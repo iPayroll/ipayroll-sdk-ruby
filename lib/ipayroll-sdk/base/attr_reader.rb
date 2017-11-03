@@ -61,6 +61,9 @@ module IpayrollSdk
       def attrs_for_object(key)
         value = @attrs[key]
         if value.nil?
+          value = @attrs[key.to_s]
+        end
+        if value.nil?
           camelized = key.to_s.camelize(:lower).to_sym
           value = @attrs[camelized]
         end
