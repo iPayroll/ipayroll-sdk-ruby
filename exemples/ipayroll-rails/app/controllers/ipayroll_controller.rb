@@ -103,7 +103,13 @@ class IpayrollController < ApplicationController
     render_resource
   end
 
-
+  def timesheets
+    @collection = @@client.timesheets.list
+    @resource = @@client.timesheets.get(653972)
+    # @@client.timesheets.delete_transaction(653972, 1555010)
+    @updated = @@client.timesheets.get(653972)
+    render_resource
+  end
 
   def update_employee(resource)
     resource.title = SecureRandom.uuid
