@@ -1,6 +1,6 @@
 module IpayrollSdk
   module Rest
-    class TimesheetsTransactions
+    class TimesheetTransactions
       include IpayrollSdk::Rest::Requester::DeleteRequester
       include IpayrollSdk::Rest::Requester::LinkRequester
 

@@ -9,7 +9,7 @@ module IpayrollSdk
 
       def initialize(rest_client)
         @requester = rest_client.requester
-        @resource_clazz = IpayrollSdk::Models::PayRate
+        @resource_clazz = IpayrollSdk::Models::LeaveRequest
         @resource_uri = "/api/v1/leaves/requests"
       end
 

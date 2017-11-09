@@ -30,6 +30,10 @@ module IpayrollSdk
       IpayrollSdk::Rest::Employees.new(@rest_client)
     end
 
+    def employee_custom_fields(employee_id)
+      IpayrollSdk::Rest::CustomFields.new(@rest_client, employee_id)
+    end
+
     def employee_payrates(employee_id)
       IpayrollSdk::Rest::EmployeePayrates.new(@rest_client, employee_id)
     end
@@ -54,16 +58,12 @@ module IpayrollSdk
       IpayrollSdk::Rest::Payslips.new(@rest_client)
     end
 
-    def custom_fields(employee_id)
-      IpayrollSdk::Rest::CustomFields.new(@rest_client, employee_id)
-    end
-
     def timesheets
       return IpayrollSdk::Rest::Timesheets.new(@rest_client);
     end
 
     def timesheets_transactions(timesheet_id)
-      return IpayrollSdk::Rest::TimesheetsTransactions.new(@rest_client, timesheet_id);
+      return IpayrollSdk::Rest::TimesheetTransactions.new(@rest_client, timesheet_id);
     end
 
     def payrolls

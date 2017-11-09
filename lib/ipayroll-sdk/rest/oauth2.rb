@@ -10,7 +10,7 @@ module IpayrollSdk
         !@rest_client.access_token.nil?
       end
 
-      def authorization_url
+      def get_authorization_url
         @rest_client.authorization_uri.to_s
       end
 

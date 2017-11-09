@@ -67,7 +67,6 @@ class IpayrollController < ApplicationController
     render_resource
   end
 
-
   def employeepayrates
     @collection = @@client.employee_payrates(654024).list
     @resource = @@client.employee_payrates(654024).get(1)
@@ -97,16 +96,16 @@ class IpayrollController < ApplicationController
   end
 
   def customfields
-    @collection = @@client.custom_fields(109).list
-    @outstanding = @@client.custom_fields(109).list_by_category('6')
-    @resource = @@client.custom_fields(109).get_by_category_and_id('6', '6586')
+    @collection = @@client.employee_custom_fields(109).list
+    @outstanding = @@client.employee_custom_fields(109).list_by_category('6')
+    @resource = @@client.employee_custom_fields(109).get_by_category_and_id('6', '6586')
     render_resource
   end
 
   def timesheets
     @collection = @@client.timesheets.list
     @resource = @@client.timesheets.get(653972)
-    # @@client.timesheets.delete_transaction(653972, 1555010)
+    @@client.timesheets.delete_transaction(653972, 1555010)
     @updated = @@client.timesheets.get(653972)
     render_resource
   end
