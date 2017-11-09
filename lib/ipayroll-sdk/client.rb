@@ -54,6 +54,10 @@ module IpayrollSdk
       IpayrollSdk::Rest::Payslips.new(@restClient)
     end
 
+    def custom_fields(employee_id)
+      IpayrollSdk::Rest::CustomFields.new(@restClient, employee_id)
+    end
+
     private
 
     def init_signet_client(options)

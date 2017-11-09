@@ -96,6 +96,15 @@ class IpayrollController < ApplicationController
     render_resource
   end
 
+  def customfields
+    @collection = @@client.custom_fields(109).list
+    @outstanding = @@client.custom_fields(109).list_by_category('6')
+    @resource = @@client.custom_fields(109).get_by_category_and_id('6', '6586')
+    render_resource
+  end
+
+
+
   def update_employee(resource)
     resource.title = SecureRandom.uuid
     @updated = @@client.employees.update(@resource.id, resource)
