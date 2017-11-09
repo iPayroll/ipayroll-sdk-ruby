@@ -7,7 +7,7 @@ class IpayrollController < ApplicationController
   end
 
   def connect
-    auth_url = @@client.oauth2.authorization_url
+    auth_url = @@client.oauth2.get_authorization_url
     redirect_to auth_url
   end
 
@@ -108,6 +108,13 @@ class IpayrollController < ApplicationController
     @resource = @@client.timesheets.get(653972)
     # @@client.timesheets.delete_transaction(653972, 1555010)
     @updated = @@client.timesheets.get(653972)
+    render_resource
+  end
+
+  def payrolls
+    @collection = @@client.payrolls.list
+    @resource = @@client.payrolls.get('0001')
+    @resource2 = @@client.payrolls.get_current
     render_resource
   end
 

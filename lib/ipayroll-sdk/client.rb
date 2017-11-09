@@ -66,6 +66,11 @@ module IpayrollSdk
       return IpayrollSdk::Rest::TimesheetsTransactions.new(@rest_client, timesheet_id);
     end
 
+    def payrolls
+      return IpayrollSdk::Rest::Payrolls.new(@rest_client);
+    end
+
+
     private
 
     def init_signet_client(options)

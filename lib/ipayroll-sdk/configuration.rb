@@ -19,7 +19,7 @@ module IpayrollSdk
       @base_url = 'http://secure2.ipayroll.co.nz/'
       @authorization_uri = '/oauth/authorize'
       @token_credential_uri = '/oauth/token'
-      @scope = 'leavebalances payelements payrates leaverequests employees costcentres payslips timesheets customfields'
+      @scope = 'leavebalances payelements payrates leaverequests employees costcentres payslips timesheets customfields payrolls'
       @auto_refresh = true
       @auto_refresh_count = 3
       @access_token_updater = TokenUpdater.new()

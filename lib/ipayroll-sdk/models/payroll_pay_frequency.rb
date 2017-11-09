@@ -1,0 +1,2 @@
+class PayrollPayFrequency
+end
