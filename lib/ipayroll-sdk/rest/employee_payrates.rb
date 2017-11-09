@@ -1,6 +1,6 @@
 module IpayrollSdk
   module Rest
-    class EmployeesPayrates
+    class EmployeePayrates
       include IpayrollSdk::Rest::Requester::ListRequester
       include IpayrollSdk::Rest::Requester::GetRequester
       include IpayrollSdk::Rest::Requester::LinkRequester

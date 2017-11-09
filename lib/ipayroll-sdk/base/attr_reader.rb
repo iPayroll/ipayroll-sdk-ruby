@@ -28,6 +28,11 @@ module IpayrollSdk
               build_instances(key1, klass)
             end
           end
+          define_method((key1.to_s + '=').to_sym) do |value|
+            unless attr_value_or_empty?(key1)
+              set_instances(key1, value)
+            end
+          end
           # memoize(key1)
         end
 
@@ -41,6 +46,18 @@ module IpayrollSdk
           end
         else
           get_klass_instance(key1, klass, attrs)
+        end
+      end
+
+      def set_instances(key, value)
+        if !@attrs[key].nil?
+          @attrs[key] = value
+        elsif !@attrs[key.to_s].nil?
+          @attrs[key.to_s] = value
+        elsif !@attrs[key.to_s.camelize(:lower).to_sym].nil?
+          @attrs[key.to_s.camelize(:lower).to_sym] = value
+        elsif !@attrs[key.to_s.camelize(:lower)].nil?
+          @attrs[key.to_s.camelize(:lower)] = value
         end
       end
 
@@ -69,6 +86,7 @@ module IpayrollSdk
         end
         value
       end
+
     end
   end
 end

@@ -1,0 +1,30 @@
+<h1>Collection</h1>
+<p><%= @collection.links %></p>
+<p><%= @collection.content %></p>
+<p><%= @collection.page %></p>
+
+<% if !@collection.first_page.nil? %>
+  <p>first_page: <%= @collection.first_page.href %></p>
+  <p>last_page: <%= @collection.last_page.href %></p>
+  <p>next_page: <%= @collection.next_page.href %></p>
+<% end %>
+
+<% if !@outstanding.nil? %>
+  <p>Outstanding: <%= @outstanding.content %></p>
+<% end %>
+
+<% if !@resource.nil? %>
+<p>Resource: <%= @resource.to_str %></p>
+<% end %>
+
+<% if !@resource2.nil? %>
+  <p>Resource: <%= @resource.to_str %></p>
+<% end %>
+
+<% if !@created.nil? %>
+  <p>Created: <%= @created %></p>
+<% end %>
+
+<% if !@updated.nil? %>
+  <p>Updated: <%= @updated.to_str %></p>
+<% end %>

@@ -26,14 +26,8 @@ module IpayrollSdk
         response.extract_resources(klass)
       end
 
-      def perform_post_request_for_resource(path, data, klass, parameters = {})
-        options = add_body_to_send(data)
-        response = perform_request('post', path, parameters, options)
-        response.extract_resource(klass)
-      end
-
       def perform_put_request_for_resource(path, data, klass, parameters = {})
-        options = add_body_to_send(data)
+        options = add_body_to_send(data.attrs)
         response = perform_request('put', path, parameters, options)
         response.extract_resource(klass)
       end
@@ -48,6 +42,7 @@ module IpayrollSdk
         options = {};
         options[:body] = MultiJson.dump(data)
         options[:headers] = {'Content-Type' => 'application/json'}
+        options
       end
 
       def perform_request(request_method, path, parameters, options = {}, count = 0)
@@ -82,7 +77,7 @@ module IpayrollSdk
       def buildUri(path, parameters = {})
         uri = path
         unless uri.is_a? URI
-          uri = URI.parse(@base_url + path)
+          uri = URI.parse(@base_url +  URI.encode(path))
         end
         uri.query = [uri.query, parameters.to_query].compact.join('&').to_s
         uri.to_s

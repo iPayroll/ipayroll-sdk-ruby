@@ -27,6 +27,7 @@ module IpayrollSdk
             return link
           end
         end
+        nil
       end
     end
   end

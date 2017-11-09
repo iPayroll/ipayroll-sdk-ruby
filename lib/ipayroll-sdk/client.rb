@@ -30,20 +30,16 @@ module IpayrollSdk
       IpayrollSdk::Rest::Employees.new(@restClient)
     end
 
-    def employees_payrates(employee_id)
-      IpayrollSdk::Rest::EmployeesPayrates.new(@restClient, employee_id)
+    def employee_payrates(employee_id)
+      IpayrollSdk::Rest::EmployeePayrates.new(@restClient, employee_id)
     end
 
-    def employees_leave_balances(employee_id)
-      IpayrollSdk::Rest::EmployeesLeaveBalances.new(@restClient, employee_id)
+    def employee_leave_balances(employee_id)
+      IpayrollSdk::Rest::EmployeeLeaveBalances.new(@restClient, employee_id)
     end
 
-    def employees_leave_requests(employee_id)
-      IpayrollSdk::Rest::EmployeesLeaveRequests.new(@restClient, employee_id)
-    end
-
-    def employees_payslips(employee_id)
-      IpayrollSdk::Rest::EmployeesLeaveRequests.new(@restClient, employee_id)
+    def employee_leave_requests(employee_id)
+      IpayrollSdk::Rest::EmployeeLeaveRequests.new(@restClient, employee_id)
     end
 
     def leave_requests

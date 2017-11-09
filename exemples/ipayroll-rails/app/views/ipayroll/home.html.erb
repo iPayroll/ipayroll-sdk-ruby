@@ -1,8 +1,19 @@
 <h1>Ipayroll#home</h1>
 <% if !@is_connected %>
-    <%= link_to 'Connect to iPayroll', controller: 'ipayroll', action: 'connect'  %>
+  <%= link_to 'Connect to iPayroll', controller: 'ipayroll', action: 'connect' %>
 <% else %>
-    <%= link_to 'All costcenters', controller: 'ipayroll', action: 'costcentres'  %>
-    <%= link_to 'All employees', controller: 'ipayroll', action: 'employees'  %>
-    <%= link_to 'All leave requests', controller: 'ipayroll', action: 'leaverequests'  %>
+  <%= link_to 'All costcenters', controller: 'ipayroll', action: 'costcentres' %>
+  <%= link_to 'All employees', controller: 'ipayroll', action: 'employees' %>
+  <%= link_to 'All employee leave balances', controller: 'ipayroll', action: 'employeeleavebalances' %>
+
+  <%= link_to 'All employee leave requests', controller: 'ipayroll', action: 'employeeleaverequests' %>
+  <%= link_to 'All employee payrates', controller: 'ipayroll', action: 'employeepayrates' %>
+
+
+  <%= link_to 'All leaverequests', controller: 'ipayroll', action: 'leaverequests' %>
+  <%= link_to 'All payelements', controller: 'ipayroll', action: 'payelements' %>
+  <%= link_to 'All payslips', controller: 'ipayroll', action: 'payslips' %>
+
+
+
 <% end %>

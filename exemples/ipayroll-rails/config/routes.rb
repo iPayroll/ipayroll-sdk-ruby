@@ -11,13 +11,19 @@ Rails.application.routes.draw do
   get 'ipayroll/withrefreshtoken'
   get 'ipayroll/withaccesstoken'
 
-  get 'ipayroll/costcentres'
+
   get 'ipayroll/costcentres2'
   get 'ipayroll/createcostcentres'
   get 'ipayroll/leaverequests'
 
+  get 'ipayroll/costcentres'
   get 'ipayroll/employees'
-
+  get 'ipayroll/employeeleavebalances'
+  get 'ipayroll/employeeleaverequests'
+  get 'ipayroll/employeepayrates'
+  get 'ipayroll/leaverequests'
+  get 'ipayroll/payelements'
+  get 'ipayroll/payslips'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,6 +1,6 @@
 module IpayrollSdk
   module Rest
-    class EmployeesLeaveBalances
+    class EmployeeLeaveBalances
       include IpayrollSdk::Rest::Requester::ListRequester
       include IpayrollSdk::Rest::Requester::GetRequester
       include IpayrollSdk::Rest::Requester::LinkRequester

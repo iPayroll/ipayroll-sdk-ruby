@@ -43,8 +43,7 @@ module IpayrollSdk
         error = IpayrollSdk::Errors::RestError::ERRORS[@response.status]
         unless error.nil?
           body = parse_body
-          error.from_response(body, @response.status)
-          raise error
+          raise error.from_response(body, @response.status)
         end
       end
 

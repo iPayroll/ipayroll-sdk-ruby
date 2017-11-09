@@ -24,7 +24,6 @@ class IpayrollController < ApplicationController
         'expires_in' => '599',
         'scope' => 'payelements timesheets leaverequests payrates payslips leavebalances employees costcentres'
     )
-
     @token = @@client.oauth2.connect_with_access_token(@token);
     redirect_to url_for(:controller => :ipayroll, :action => :home)
   end
@@ -34,12 +33,6 @@ class IpayrollController < ApplicationController
     redirect_to url_for(:controller => :ipayroll, :action => :home)
   end
 
-  def costcentres
-    @cost_centers_collection = @@client.cost_centres.list
-    # @cost_centers_collection2 = @@client.cost_centres.link_resources(@cost_centers_collection.next_page)
-    @cost_center = @@client.cost_centres.get(77069)
-  end
-
   def costcentres2
     @@client.oauth2.refresh_access_token()
     pageParameter = IpayrollSdk::Rest::Parameters::Page.new(2, 20)
@@ -47,32 +40,80 @@ class IpayrollController < ApplicationController
   end
 
   def employees
-    @employees_collection = @@client.employees.list
-    @employees_collection = @@client.employees.link_resources(@employees_collection.next_page)
+    @collection = @@client.employees.list
+    @collection = @@client.employees.link_resources(@collection.next_page)
+    @resource = @@client.employees.get(141228)
+    update_employee @resource
+    render_resource
+  end
 
-    @payrates = @@client.employees_payrates(141228).list
-    @employee = @@client.employees.get(141228)
-    @employee
+  def costcentres
+    @collection = @@client.cost_centres.list
+    @resource = @@client.cost_centres.get(7074)
+    create_cost_centres
+    render_resource
+  end
+
+  def employeeleavebalances
+    @collection = @@client.employee_leave_balances(654024).list
+    @resource = @@client.employee_leave_balances(654024).get('Annual Leave')
+    render_resource
+  end
+
+  def employeeleaverequests
+    @collection = @@client.employee_leave_requests(654024).list
+    @resource = @@client.employee_leave_requests(654024).get(5112)
+    @outstanding = @@client.employee_leave_requests(654024).list_outstanding
+    render_resource
+  end
+
+
+  def employeepayrates
+    @collection = @@client.employee_payrates(654024).list
+    @resource = @@client.employee_payrates(654024).get(1)
+
+    render_resource
   end
 
   def leaverequests
-    @leave_requests_collection = @@client.leave_requests.list
-    @leave_requests_outstanding_collection = @@client.leave_requests.list_outstanding
+    @collection = @@client.leave_requests.list
+    @resource = @@client.leave_requests.get(5112)
+    @outstanding = @@client.leave_requests.list_outstanding
+    render_resource
   end
 
-  def createcostcentres
+  def payelements
+    @collection = @@client.pay_elements.list
+    @resource = @@client.pay_elements.get('AAA')
+    render_resource
+  end
+
+  def payslips
+    @collection = @@client.payslips.list
+    @outstanding = @@client.payslips.list_by_payroll('0130')
+    @resource = @@client.payslips.get_by_employee_id('977659')
+    @resource2 = @@client.payslips.get_by_payroll_and_by_employee_id('0130', '977659')
+    render_resource
+  end
+
+  def update_employee(resource)
+    resource.title = SecureRandom.uuid
+    @updated = @@client.employees.update(@resource.id, resource)
+  end
+
+  def create_cost_centres
     ccs = [{
-               :code => "code12",
+               :code => "code12" + SecureRandom.uuid,
                :description => "code1 desc",
                :displayValue => "code1 display"
            },
            {
-               :code => "code13",
+               :code => "code13" + SecureRandom.uuid,
                :description => "code1 desc",
                :displayValue => "code1 display"
            }
     ]
-    @cost_centers = @@client.cost_centres.create(ccs)
+    @created = @@client.cost_centres.create(ccs)
   end
 
   # @@client = IpayrollSdk::Client.new(
@@ -82,6 +123,13 @@ class IpayrollController < ApplicationController
   #     :redirect_uri => 'http://localhost:3000/ipayroll/redirect'
   # )
 
+
   @@client = IpayrollSdk::Client.new
+
+  private
+  def render_resource
+    render 'ipayroll/resource'
+  end
+
 
 end
