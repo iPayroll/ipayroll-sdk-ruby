@@ -56,6 +56,7 @@ client = IpayrollSdk::Client.new
 
 ### Authentication
 
+#### Oauth2 Authorization code grant
 ```ruby
 def connect
   auth_url = client.oauth2.authorization_url
@@ -73,7 +74,33 @@ refresh the access token
 client.oauth2.refresh_access_token
 ```
 
-### Request a list of resource
+#### Oauth2 Refresh token grant
+```ruby
+@@client.oauth2.connect_with_refresh_token('998c625c-719a-4186-bbd0-9200b55bff4c');
+```
+
+#### Store access token:
+```ruby
+class TokenUpdater
+
+  def update(token)
+    @token = token
+    puts(token)
+  end
+end
+```
+```ruby
+IpayrollSdk.configure do |config|
+  config.client_id = '...'
+  config.client_secret = '...'
+  config.redirect_uri = '...'
+  config.access_token_updater = TokenUpdater.new
+end
+```
+
+### Request API
+
+#### Get a list of resources
 Get the first page
 ```ruby
 client.cost_centres.list
@@ -83,13 +110,13 @@ Get a specific page
 pageParameter = IpayrollSdk::Rest::Parameters::Page.new(2, 20)
 client.cost_centres.list(pageParameter)
 ```
-### Request a resource
+#### Get a resource
 ```ruby
 cost_center_id = 7242
 client.cost_centres.get(cost_center_id)
 ```
 
-### Create resources
+#### Create resources
 ```ruby
 ccs = [{
   :code => "code12",
@@ -101,6 +128,33 @@ ccs = [{
   :displayValue => "code1 display"
 }]
 @cost_centers = @@client.cost_centres.create(ccs)
+```
+
+#### Update a resource
+```ruby
+employee = @@client.employees.get(141228)
+employee.title = SecureRandom.uuid
+@updated = @@client.employees.update(employee.id, employee)
+```
+#### Delete a resource
+```ruby
+@@client.timesheets.transactions(653972).delete('19');
+```
+
+#### All requestable resources
+```ruby
+@@client.cost_centres
+@@client.employees
+@@client.employee_custom_fields(employee_id)
+@@client.employee_leave_balances(employee_id)
+@@client.employee_leave_requests(employee_id)
+@@client.employee_payrates(employee_id)
+@@client.leave_requests
+@@client.pay_elements
+@@client.payslips
+@@client.timesheets
+@@client.timesheetsTransactions($timesheets_id)
+@@client.payrolls
 ```
 
 ## Development
