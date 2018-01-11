@@ -87,11 +87,17 @@ class IpayrollController < ApplicationController
     render_resource
   end
 
-  def payslips
-    @collection = @@client.payslips.list
-    @outstanding = @@client.payslips.list_by_payroll('0130')
-    @resource = @@client.payslips.get_by_employee_id('977659')
-    @resource2 = @@client.payslips.get_by_payroll_and_by_employee_id('0130', '977659')
+  def currentPayrollPayslips
+    @collection = @@client.payslips_by_current_payroll.list
+    if(@collection.content != nil)
+      @resource = @@client.payslips_by_current_payroll.get(@collection.content[0].id)
+    end
+    render_resource
+  end
+
+  def payrollPayslips
+    @collection = @@client.payslips_by_payroll('0130').list()
+    @resource = @@client.payslips_by_payroll('0130').get('977659')
     render_resource
   end
 

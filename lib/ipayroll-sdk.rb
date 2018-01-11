@@ -58,7 +58,7 @@ require 'ipayroll-sdk/rest/leave_requests'
 require 'ipayroll-sdk/rest/oauth2'
 require 'ipayroll-sdk/rest/pay_elements'
 require 'ipayroll-sdk/rest/payrolls'
-require 'ipayroll-sdk/rest/payslips'
+require 'ipayroll-sdk/rest/payroll_payslips'
 require 'ipayroll-sdk/rest/timesheets'
 require 'ipayroll-sdk/rest/timesheet_transactions'
 
