@@ -108,11 +108,17 @@ class IpayrollController < ApplicationController
     render_resource
   end
 
-  def timesheets
-    @collection = @@client.timesheets.list
-    @resource = @@client.timesheets.get(653972)
-    @@client.timesheets.delete_transaction(653972, 1555010)
-    @updated = @@client.timesheets.get(653972)
+  def currenttimesheets
+    @collection = @@client.timesheets_by_current_payroll.list
+    @resource = @@client.timesheets.get(977630)
+    @@client.timesheets.delete_transaction(977630, 1555010)
+    @updated = @@client.timesheets_by_current_payroll.get(977630)
+    render_resource
+  end
+
+  def timesheetsbypayroll
+    @collection = @@client.timesheets_by_payroll('0130').list
+    @resource = @@client.timesheets_by_payroll('0130').get(653972)
     render_resource
   end
 

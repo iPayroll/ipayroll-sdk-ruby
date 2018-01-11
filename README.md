@@ -152,7 +152,10 @@ employee.title = SecureRandom.uuid
 @@client.leave_requests
 @@client.pay_elements
 @@client.payslips
+@@client.payslips_by_payroll(payroll_id)
+@@client.payslips_by_current_payroll
 @@client.timesheets
+@@client.timesheets_by_payroll(payroll_id)
 @@client.timesheetsTransactions($timesheets_id)
 @@client.payrolls
 ```

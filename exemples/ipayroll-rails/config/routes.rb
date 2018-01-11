@@ -26,7 +26,8 @@ Rails.application.routes.draw do
   get 'ipayroll/payrollPayslips'
   get 'ipayroll/currentPayrollPayslips'
   get 'ipayroll/customfields'
-  get 'ipayroll/timesheets'
+  get 'ipayroll/currenttimesheets'
+  get 'ipayroll/timesheetsbypayroll'
   get 'ipayroll/payrolls'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

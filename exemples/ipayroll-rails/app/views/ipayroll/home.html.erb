@@ -14,7 +14,9 @@
   <%= link_to 'All payroll payslips', controller: 'ipayroll', action: 'payrollPayslips' %>
   <%= link_to 'All current payroll payslips', controller: 'ipayroll', action: 'currentPayrollPayslips' %>
   <%= link_to 'All customfields', controller: 'ipayroll', action: 'customfields' %>
-  <%= link_to 'All timesheets', controller: 'ipayroll', action: 'timesheets' %>
+  <%= link_to 'All timesheets by current payroll', controller: 'ipayroll', action: 'currenttimesheets' %>
+  <%= link_to 'All timesheets by payroll', controller: 'ipayroll', action: 'timesheetsbypayroll' %>
+
   <%= link_to 'All payrolls', controller: 'ipayroll', action: 'payrolls' %>
 
 <% end %>

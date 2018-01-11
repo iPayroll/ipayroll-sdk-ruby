@@ -54,24 +54,36 @@ module IpayrollSdk
       IpayrollSdk::Rest::PayElements.new(@rest_client)
     end
 
-    def payslips_payroll(payroll_id)
+    def payslips
+      payslips_by_current_payroll
+    end
+
+    def payslips_by_payroll(payroll_id)
       IpayrollSdk::Rest::PayrollPayslips.new(@rest_client, payroll_id)
     end
 
-    def payslips_current_payroll()
+    def payslips_by_current_payroll
       IpayrollSdk::Rest::PayrollPayslips.new(@rest_client, IpayrollSdk::Rest::Payrolls::CURRENT_PAYROLL_KEY)
     end
 
     def timesheets
-      return IpayrollSdk::Rest::Timesheets.new(@rest_client);
+      IpayrollSdk::Rest::Timesheets.new(@rest_client);
+    end
+
+    def timesheets_by_payroll(payroll_id)
+      IpayrollSdk::Rest::PayrollTimesheets.new(@rest_client, payroll_id);
+    end
+
+    def timesheets_by_current_payroll
+      timesheets;
     end
 
     def timesheets_transactions(timesheet_id)
-      return IpayrollSdk::Rest::TimesheetTransactions.new(@rest_client, timesheet_id);
+      IpayrollSdk::Rest::TimesheetTransactions.new(@rest_client, timesheet_id);
     end
 
     def payrolls
-      return IpayrollSdk::Rest::Payrolls.new(@rest_client);
+      IpayrollSdk::Rest::Payrolls.new(@rest_client);
     end
 
 

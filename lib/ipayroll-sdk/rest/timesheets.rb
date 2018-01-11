@@ -23,10 +23,6 @@ module IpayrollSdk
         transactions(timesheet_id).delete(transaction_id)
       end
 
-      def get_by_payroll_id(timesheet_id, payroll_id)
-        url = "/api/v1/timesheets/#{timesheet_id}/payrolls/#{payroll_id}"
-        @requester.perform_get_request_for_resource(url, @resource_clazz)
-      end
     end
   end
 end
